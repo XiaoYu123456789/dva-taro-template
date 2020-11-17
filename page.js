@@ -1,5 +1,5 @@
 /**
- * pages模版快速生成脚本,执行命令 npm run temp `文件名`
+ * pages模版快速生成脚本,执行命令 npm run createPage `文件名`
  */
 const fs = require('fs');
 const dirName = process.argv[2];

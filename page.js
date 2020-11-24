@@ -2,6 +2,7 @@
  * pages模版快速生成脚本,执行命令 npm run createPage `文件名`
  */
 const fs = require('fs');
+
 const dirName = process.argv[2];
 if (!dirName) {
   console.log('文件夹名称不能为空！');
@@ -90,7 +91,7 @@ export const demo = (data) => {
 
 const indexConfigTep = `export default {
   navigationBarTitleText: '${dirName}', //设置标题名称
-  navigationStyle: default , //	导航栏样式，仅支持以下值：default 默认样式；custom 自定义导航栏，只保留右上角胶囊按钮
+  navigationStyle: 'default' , //	导航栏样式，仅支持以下值：default 默认样式；custom 自定义导航栏，只保留右上角胶囊按钮
   //还有一些常见的页面设置需要自行翻阅官方API文档
 }
 `;

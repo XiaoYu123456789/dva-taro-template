@@ -1,7 +1,7 @@
 
 import React,{useEffect} from 'react';
 import  Taro from '@tarojs/taro';
-import { View, Text } from '@tarojs/components';
+import { View, WebView } from '@tarojs/components';
 import './index.less';
 import { connect } from 'react-redux';
 
@@ -13,18 +13,35 @@ const Index = (props)=>{
       dispatch({
         type:"index/test"
       })
-  },[])
+  },[dispatch])
   return (
-    <View 
-      onClick={
-        ()=>{
-          Taro.navigateTo({
-            url:"/pages/testAuto/index"
-            // url:"/pages/pagesA/testA/index"
-          })
+    <View>
+      <View 
+        onClick={
+          ()=>{
+            Taro.navigateTo({
+              url:"/pages/testAuto/index"
+              // url:"/pages/pagesA/testA/index"
+            })
+          }
         }
-      }>
-    {index.testStr}
+      >
+      {index.testStr}
+      </View>
+      <View>
+          <View 
+            onClick={
+              ()=>{
+                Taro.navigateTo({
+                  url:"/pages/WVdemo/index"
+                })
+              }
+            }
+          >
+            WebViewDemo
+          </View>
+       </View>
+
     </View>
   )
 }

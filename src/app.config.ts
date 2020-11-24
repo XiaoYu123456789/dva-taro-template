@@ -3,6 +3,7 @@ export default {
   pages: [
     'pages/index/index',
     'pages/testAuto/index',
+    'pages/WVdemo/index',
   ],
   // 窗口风格
   window: {

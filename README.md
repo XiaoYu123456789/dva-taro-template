@@ -59,8 +59,11 @@ yarn start
     - `test`: 增加测试代码
  - 可以使用page.js快速生成模板页面
  ```bash
- # 快速创建模板页面（目前不支持分包创建）
- npm run cratePage {文件名称}
+ # 快速创建模板页面(目前支持最多二级页面创建)
+ npm run cratePage [文件目录] {文件名称}
+ #例子：npm run cratePage pageB test //子目录创建
+ #例子：npm run cratePage  test  //根目录创建
+
  # 创建模板页面之后，将model.ts和页面路径自行注册到models文件夹下的index.ts和app.congig当中
  #后续准备自动添加页面路径和dva的注册
  ```

@@ -1,12 +1,31 @@
 /**
- * pages模版快速生成脚本,执行命令 npm run createPage `文件名`
+ * pages模版快速生成脚本,执行命令 npm run createPage [父文件夹名] `文件名`
  */
 const fs = require('fs');
 
-const dirName = process.argv[2];
+const error_test = '示例：npm run createPage [父文件夹名] test';
+const font_blue = "\x1B[36m%s\x1B[0m";
+const font_red = "\x1B[31m%s\x1B[0m";
+const font_green = "\x1B[32m%s\x1B[0m";
+
+let dirCatalog = null ;
+let dirName = null;
+if(process.argv.length >4){
+  console.log(font_red,"ERROR: 参数错误");
+  console.log(font_blue,error_test);
+  process.exit(0);
+}
+
+if(process.argv.length === 4){
+  dirName = process.argv[3];
+  dirCatalog = process.argv[2] +"/";
+}else{
+  dirName = process.argv[2];
+}
+
 if (!dirName) {
-  console.log('文件夹名称不能为空！');
-  console.log('示例：npm run temp test');
+  console.log( font_red,'ERROR: 文件夹名称不能为空！');
+  console.log(font_blue,error_test);
   process.exit(0);
 }
 // 页面模版
@@ -79,6 +98,8 @@ export default {
 
 // service页面模版
 const serviceTep = `import Request from '../../utils/request';
+import dirName from './page';
+import dirName from './page';
 
 export const demo = (data) => {
   return Request({
@@ -96,15 +117,36 @@ const indexConfigTep = `export default {
 }
 `;
 
-fs.mkdirSync(`./src/pages/${dirName}`); // mkdir $1
-process.chdir(`./src/pages/${dirName}`); // cd $1
+
+if(dirCatalog){
+  const  path_way =  `./src/pages/${dirCatalog}`
+  if(!fs.existsSync(path_way)){
+     fs.mkdirSync(`./src/pages/${dirCatalog}`);
+  }
+  try {
+      fs.mkdirSync(`./src/pages/${dirCatalog}${dirName}`); // mkdir $1
+      process.chdir(`./src/pages/${dirCatalog}${dirName}`); // cd $1
+  } catch (error) {
+    console.log(font_red,"ERROR: 目录下有同名文件，创建失败");
+    process.exit(0);
+  }
+}else{
+  try {
+      fs.mkdirSync(`./src/pages/${dirName}`); // mkdir $1
+      process.chdir(`./src/pages/${dirName}`); // cd $1
+  } catch (error) {
+    console.log(font_red,"ERROR: 目录下有同名文件，创建失败");
+    process.exit(0);
+  }
+}
+
 
 fs.writeFileSync('index.tsx', indexTep);
 fs.writeFileSync('index.less', lessTep);
 fs.writeFileSync('model.ts', modelTep);
 fs.writeFileSync('service.ts', serviceTep);
 fs.writeFileSync('index.config.ts', indexConfigTep);
-console.log(`模版${dirName}已创建,请手动按照格式增加到./src/models`);
+console.log(font_green,` SUCCESS: 模版 ${dirCatalog}${dirName} 已创建,请手动按照格式增加到./src/models`);
 function titleCase(str) {
   const array = str.toLowerCase().split(' ');
   for (let i = 0; i < array.length; i++) {

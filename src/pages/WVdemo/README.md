@@ -19,6 +19,7 @@
 7. web-view不支持微信支付，但web-view内嵌的页面使用了公众号授权的微信支付，是可以在内嵌的页面使用微信支付的。换句话说，如果如果用web-view内嵌公众号的h5页面，利用JSSDK是可以使用微信支付的。
 8. 可以使用input-file进行文件上传，但是对于部分苹果机支持不好。
 9. web-view的`<a>`标签不能下载文件,不支持外链下载,可以通过跳转到小程序里面选择使用wx.downloadFile(Object object) 进行文件下载
+10. 避免在链接中带有中文字符，在 iOS 中会有打开白屏的问题，建议加一下 encodeURIComponent
 
 ## 如何在web-view当中使用JSSDK
 1. 需要有一个小程序关联公众号才可以使用JSSDK

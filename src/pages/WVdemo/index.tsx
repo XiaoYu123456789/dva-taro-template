@@ -16,18 +16,13 @@ const Wvdemo = props =>{
 
     useEffect(() => {
         console.log("@",props)
-
-        wx.miniProgram.getEnv(
-          function(res) { console.log(res,"@") }
-          )
-
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
            <View className='WVdemo-page'>
            <View>加载动画: Loading.....</View>
-              <WebView src='https://www.sa.swcare.com.cn/#/'
+              <WebView src='http://www.baidu.com'
                 onMessage={handleMessage}
               />
            </View>

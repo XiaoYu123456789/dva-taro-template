@@ -1,5 +1,5 @@
 
-import React,{useEffect} from 'react';
+import React,{useEffect,pageScrollTo} from 'react';
 import  Taro from '@tarojs/taro';
 import { View, WebView } from '@tarojs/components';
 import './index.less';
@@ -13,7 +13,23 @@ const Index = (props)=>{
       dispatch({
         type:"index/test"
       })
+
+
   },[dispatch])
+
+Taro.onAppShow(a =>{
+  console.log(a);
+})
+
+const returnTop = ()=>{
+  console.log(111);
+  
+  Taro.pageScrollTo({
+    scrollTop: 0,
+    duration: 300
+  })
+
+}
   return (
     <View>
       <View 
@@ -41,7 +57,9 @@ const Index = (props)=>{
             WebViewDemo
           </View>
        </View>
-
+        <View onClick = {()=>{returnTop()}}>
+          top
+        </View>
     </View>
   )
 }

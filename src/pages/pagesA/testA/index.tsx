@@ -6,7 +6,7 @@ import  "./index.less";
 const testA = (props)=>{
   
   return (
-    <View>这是A页面</View>
+    <View>这是A页面123</View>
   )
 }
 
